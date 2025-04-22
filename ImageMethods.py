@@ -14,8 +14,6 @@ class ImageMethods:
         assert 0 <= x < 1572
         assert 0 <= y < 1572
         assert 0 < size <= 10
-        x0 = x - size + 1
-        y0 = y - size + 1
         malha = [[15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15],
                  [15, 15, 15, 15, 15, 15, 10, 10, 10, 10, 10, 10, 10, 10, 10, 15, 15, 15, 15, 15, 15],
                  [15, 15, 15, 15, 10, 10,  9,  9,  9,  9,  9,  9,  9,  9,  9, 10, 10, 15, 15, 15, 15],
@@ -37,9 +35,9 @@ class ImageMethods:
                  [15, 15, 15, 15, 10, 10,  9,  9,  9,  9,  9,  9,  9,  9,  9, 10, 10, 15, 15, 15, 15],
                  [15, 15, 15, 15, 15, 15, 10, 10, 10, 10, 10, 10, 10, 10, 10, 15, 15, 15, 15, 15, 15],
                  [15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15]]
-        for dx, i in enumerate(range(x0, x0 + 21)):
+        for dx, i in enumerate(range(x - 10, x + 11)):
             if not 0 <= i < 1572: continue
-            for dy, j in enumerate(range(y0, y0 + 21)):
+            for dy, j in enumerate(range(y - 10, y + 11)):
                 if not 0 <= j < 1572: continue
                 if malha[dy][dx] > size: continue
                 ImageMethods.paintPixel(image, i, j, r, g, b)
