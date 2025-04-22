@@ -1,4 +1,4 @@
-from PIL import Image
+from PIL import Image, ImageDraw
 class ImageMethods:
     @staticmethod
     def create():
@@ -59,4 +59,21 @@ class ImageMethods:
                 if dy == 0: continue
                 dx = round(dy * (xf - x) / (yf - y))
                 ImageMethods.paintPixel(image, x + dx, j, r, g, b)
+        return None
+
+    @staticmethod
+    def drawCircle(image, x, y, size, r, g, b):
+        assert 0 <= x < 1572
+        assert 0 <= y < 1572
+        assert 0 < size <= 10
+        draw = ImageDraw.Draw(image)
+        draw.ellipse((x - size, y - size, x + size, y + size), fill=(r, g, b))
+        return None
+    
+    @staticmethod
+    def drawLine(image, x, y, xf, yf, r, g, b):
+        assert 0 <= x <= xf < 1572
+        assert 0 <= y <= yf < 1572
+        draw = ImageDraw.Draw(image)
+        draw.line((x, y, xf, yf), fill=(r, g, b), width=1)
         return None
