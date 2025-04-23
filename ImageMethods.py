@@ -1,19 +1,30 @@
 from PIL import Image, ImageDraw
+from dataclasses import dataclass
+
+@dataclass
 class ImageMethods:
     @staticmethod
     def create():
         return Image.new("RGB", (1572, 1572), (0, 0, 0))
     
     @staticmethod
-    def paintPixel(image, x, y, r, g, b):
-        image.putpixel((x,y), (r, g, b))
+    def paintPixel(image: Image.Image, x: int, y: int, r: int, g: int, b: int):
+        assert 0 <= x < 1572
+        assert 0 <= y < 1572
+        assert 0 <= r < 256
+        assert 0 <= g < 256
+        assert 0 <= b < 256
+        image.putpixel((x, y), (r, g, b))
         return None
     
     @staticmethod
-    def paintCircle(image, x, y, size, r, g, b):
+    def paintCircle(image: Image.Image, x: int, y: int, size: int, r: int, g: int, b: int):
         assert 0 <= x < 1572
         assert 0 <= y < 1572
         assert 0 < size <= 10
+        assert 0 <= r < 256
+        assert 0 <= g < 256
+        assert 0 <= b < 256
         malha = [[15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15],
                  [15, 15, 15, 15, 15, 15, 10, 10, 10, 10, 10, 10, 10, 10, 10, 15, 15, 15, 15, 15, 15],
                  [15, 15, 15, 15, 10, 10,  9,  9,  9,  9,  9,  9,  9,  9,  9, 10, 10, 15, 15, 15, 15],
@@ -44,9 +55,12 @@ class ImageMethods:
         return None
     
     @staticmethod
-    def paintLine(image, x, y, xf, yf, r, g, b):
+    def paintLine(image: Image.Image, x: int, y: int, xf: int, yf: int, r: int, g: int, b: int):
         assert 0 <= x <= xf < 1572
         assert 0 <= y <= yf < 1572
+        assert 0 <= r < 256
+        assert 0 <= g < 256
+        assert 0 <= b < 256
         if (xf - x) >= (yf - y):
             for dx, i in enumerate(range(x, xf)):
                 if dx == 0: continue
@@ -60,18 +74,24 @@ class ImageMethods:
         return None
 
     @staticmethod
-    def drawCircle(image, x, y, size, r, g, b):
+    def drawCircle(image: Image.Image, x: int, y: int, size: int, r: int, g: int, b: int):
         assert 0 <= x < 1572
         assert 0 <= y < 1572
         assert 0 < size <= 10
+        assert 0 <= r < 256
+        assert 0 <= g < 256
+        assert 0 <= b < 256
         draw = ImageDraw.Draw(image)
         draw.ellipse((x - size, y - size, x + size, y + size), fill=(r, g, b))
         return None
     
     @staticmethod
-    def drawLine(image, x, y, xf, yf, r, g, b):
+    def drawLine(image: Image.Image, x: int, y: int, xf: int, yf: int, r: int, g: int, b: int):
         assert 0 <= x <= xf < 1572
         assert 0 <= y <= yf < 1572
+        assert 0 <= r < 256
+        assert 0 <= g < 256
+        assert 0 <= b < 256
         draw = ImageDraw.Draw(image)
         draw.line((x, y, xf, yf), fill=(r, g, b), width=1)
         return None
