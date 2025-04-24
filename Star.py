@@ -21,7 +21,7 @@ class Star:
     magnitude: float
     tamanho: int
 
-    def __init__(self, index, x, y, z, rgb_estrela, rgb_designacao, designacao, magnitude):
+    def __init__(self, index: int, x: float, y: float, z: float, rgb_estrela: str, rgb_designacao: str, designacao:str, magnitude: str):
         self.index = int(index)
         self.x, self.y, self.z = float(x), float(y), float(z)
 
@@ -29,14 +29,13 @@ class Star:
         self.rgb_designacao = rgb_designacao
         self.rgb_var = "FFFFFF"
 
-        if designacao == "": self.designacao == f"Star{index}"
-        else: self.designacao == designacao
+        if designacao == "": self.designacao = f"Star{index}"
+        else: self.designacao = designacao
 
         self.magnitude = magnitude
         self.tamanho = Star.size(magnitude)
 
         self.rotate()
-        self.position()
         return None
     
     def rotate(self, R: list = [[1, 0, 0], [0, 1, 0], [0, 0, 1]]):
@@ -45,6 +44,7 @@ class Star:
         zr = self.x * R[2][0] + self.y * R[2][1] + self.z * R[2][2]
         self.xr, self.yr, self.zr = xr, yr, zr
         self.thetar, self.phir = Star.toAngles(xr, yr, zr)
+        self.position()
         return None
     
     def position(self):

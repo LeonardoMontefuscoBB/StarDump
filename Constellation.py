@@ -5,13 +5,15 @@ from Star import Star
 class Constellation:
     index: int
     nome: str
+    sigla: str
     R: list
     rgb : str
     set: dict
-    def __init__(self, index: int, nome: str, R: list, rgb: str):
+    def __init__(self, index: int, nome: str, sigla: str, R: list, rgb: str):
         assert len(R) == 9
         self.index = index
         self.nome = nome
+        self.sigla = sigla
         self.R = [[float(R[row * 3 + cell]) for cell in range(3)] for row in range(3)]
         self.rgb = rgb
         self.set = {}
