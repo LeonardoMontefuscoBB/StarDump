@@ -108,4 +108,4 @@ if __name__ == "__main__":
                                    magnitude        = float(e[5])
                               ))
     
-    uranographia.show(2, 7)
+    uranographia.show(2, 73)

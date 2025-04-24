@@ -5,7 +5,8 @@ from dataclasses import dataclass
 class ImageMethods:
     @staticmethod
     def create():
-        return Image.new("RGB", (1572, 1572), (0, 0, 0))
+        return Image.new("RGB", (1572, 1572), (255, 255, 255)) #flag para impressao
+        # return Image.new("RGB", (1572, 1572), (0, 0, 0))
     
     @staticmethod
     def paintPixel(image: Image.Image, x: int, y: int, r: int, g: int, b: int):
@@ -31,6 +32,11 @@ class ImageMethods:
         # if size == 4: size = 2.0
         # if size == 5
         draw = ImageDraw.Draw(image)
+        if r == 105: r, g, b =  31,  73, 125 #flag para impressao
+        if r == 188: r, g, b = 148, 138,  84 #flag para impressao
+        if r == 93:  r, g, b =  49, 134, 155 #flag para impressao
+        if r == 247: r, g, b = 226, 107,  10 #flag para impressao
+        if r == 178: r, g, b =  89,  89,  89 #flag para impressao
         if size < 3:
             draw.ellipse((y - size / 2, 1571 - x - size / 2, y + size / 2, 1571 - x + size / 2), fill=(r, g, b))
         elif size < 4:
