@@ -25,7 +25,7 @@ class Constellation:
         return None
     
     def color(self):
-        for s in self.set: s.color(self.rgb)
+        for s in self.set.values(): s.color(self.rgb)
         return None
     
 

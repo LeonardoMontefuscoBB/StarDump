@@ -25,8 +25,18 @@ class ImageMethods:
         assert 0 <= r < 256
         assert 0 <= g < 256
         assert 0 <= b < 256
+        # if size == 1: size = 0.5
+        # if size == 2: size = 1.0
+        # if size == 3: size = 1.5
+        # if size == 4: size = 2.0
+        # if size == 5
         draw = ImageDraw.Draw(image)
-        draw.ellipse((x - size, y - size, x + size, y + size), fill=(r, g, b))
+        if size < 3:
+            draw.ellipse((y - size / 2, 1571 - x - size / 2, y + size / 2, 1571 - x + size / 2), fill=(r, g, b))
+        elif size < 4:
+            draw.ellipse((y - size / 1.5, 1571 - x - size / 1.5, y + size / 1.5, 1571 - x + size / 1.5), fill=(r, g, b))
+        else:
+            draw.ellipse((y - size, 1571 - x - size, y + size, 1571 - x + size), fill=(r, g, b))
         return None
     
     @staticmethod

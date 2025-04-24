@@ -38,14 +38,14 @@ class Uranographia:
         if reference >= 0: self.rotate(reference)
         match option:
             case 0: self.showRealistic()
-            case 1: self.showDesignation()
+            case 1: self.showDesignation(reference)
             case 2: self.showConstellation()
         return None
     
     def showRealistic(self):
         canva = ImageMethods.create()
         for c in self.sections.values():
-            for s in c.set.values():
+            for s in reversed(c.set.values()):
                 if not s.visivel: continue
                 if not 0 <= s.posX < 1572: continue
                 if not 0 <= s.posY < 1572: continue
@@ -53,21 +53,25 @@ class Uranographia:
                 ImageMethods.drawCircle(canva, s.posX, s.posY, s.tamanho, r, g, b)
         canva.save(f"{os.path.dirname(__file__)}/out.png")
     
-    def showDesignation(self):
+    def showDesignation(self, reference):
         canva = ImageMethods.create()
         for c in self.sections.values():
-            for s in c.set.values():
+            for s in reversed(c.set.values()):
                 if not s.visivel: continue
                 if not 0 <= s.posX < 1572: continue
                 if not 0 <= s.posY < 1572: continue
-                r, g, b = ColorMethods.hex_to_tuple(s.rgb_designacao)
+                if reference == c.index:
+                    r, g, b = ColorMethods.hex_to_tuple(s.rgb_designacao)
+                else:
+                    r, g, b = ColorMethods.hex_to_tuple("FFFFFF")
                 ImageMethods.drawCircle(canva, s.posX, s.posY, s.tamanho, r, g, b)
         canva.save(f"{os.path.dirname(__file__)}/out.png")
     
     def showConstellation(self):
         canva = ImageMethods.create()
         for c in self.sections.values():
-            for s in c.set.values():
+            c.color()
+            for s in reversed(c.set.values()):
                 if not s.visivel: continue
                 if not 0 <= s.posX < 1572: continue
                 if not 0 <= s.posY < 1572: continue
@@ -104,4 +108,4 @@ if __name__ == "__main__":
                                    magnitude        = float(e[5])
                               ))
     
-    uranographia.show(1, 7)
+    uranographia.show(2, 7)
