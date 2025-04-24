@@ -16,6 +16,7 @@ class Star:
     visivel: bool
     rgb_estrela: str
     rgb_designacao: str
+    rgb_var: str
     designacao: str
     magnitude: float
     tamanho: int
@@ -26,6 +27,7 @@ class Star:
 
         self.rgb_estrela = rgb_estrela
         self.rgb_designacao = rgb_designacao
+        self.rgb_var = "FFFFFF"
 
         if designacao == "": self.designacao == ""
         else: self.designacao == designacao[3:]
@@ -53,6 +55,10 @@ class Star:
         if not 0 <= posY < 1572:
             self.posX, self.posY, self.visivel = -1, -1, False
         self.posX, self.posY, self.visivel = posX, posY, True
+        return None
+    
+    def color(self, rgb: str):
+        self.rgb_var = rgb
         return None
     
     @staticmethod
