@@ -19,8 +19,7 @@ class Constellation:
     
     def populate(self, s: Star, specialDesignation: str = ""):
         if specialDesignation:  self.set[specialDesignation] = s
-        elif s.designacao:      self.set[s.designacao] = s
-        else:                   self.set[f"star{s.index}"] = s
+        else:                   self.set[s.designacao] = s
         return None
     
     def color(self):

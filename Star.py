@@ -29,8 +29,8 @@ class Star:
         self.rgb_designacao = rgb_designacao
         self.rgb_var = "FFFFFF"
 
-        if designacao == "": self.designacao == ""
-        else: self.designacao == designacao[3:]
+        if designacao == "": self.designacao == f"Star{index}"
+        else: self.designacao == designacao
 
         self.magnitude = magnitude
         self.tamanho = Star.size(magnitude)
